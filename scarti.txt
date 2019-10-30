@@ -1,0 +1,56 @@
+var plusOrMinus = Math.random() < 0.5 ? -1 : 1;
+
+var sliders = [];
+var angle = 0;
+var offset=0;
+var rot = 0;
+
+
+function preload(){
+}
+
+function setup() {
+  noCanvas();
+  var w = windowWidth;
+  var h = windowHeight;
+
+  select("body").style("background:hsl(180,100%,24%)")
+
+  // createElement("button", "Headbutt");
+  // createElement("button", "Thundershock");
+  // selectAll("button").forEach(function(btn) {
+  //   btn.style("background-color:red; color:white; border:none; margin:5px; font-size:20px");
+  // })
+
+  // slider = createSlider(0, 360, 180);
+  // val = slider.value();
+  // slider.style("transform: rotate("+random(0,45)+"deg)");
+
+  for (var i = 0; i < 50; i++) {
+    sliders[i] = createSlider(0, 255, 0);
+    sliders[i].position(random(-w/2,w), random(0,h))
+    sliders[i].style("transform: rotate("+random(-90,90)+"deg)");
+
+    // sliders[i].style("-webkit-appearance:none; width:"+random(100,200)+"px; height:10px; border-radius:5px; background:#d3d3d3; outline:none");
+  }
+  sliders.forEach(function(sld) {
+    // sld.style("animation: rotation "+random(10,30)+"s infinite linear");
+    sld.style("-webkit-appearance:none; width:"+random(50,1000)+"px; height:10px; border-radius:5px; background-color:rgba(0,0,0,.5); outline:none");
+  })
+
+
+
+  // selectAll(".slider::-webkit-slider-thumb").forEach(function(sldtmb) {
+  //   sldtmb.style("-webkit-appearance:none; appearance:none; width:25px; height:25px; border-radius:50%; background:#4CAF50; cursor:pointer");
+  // })
+}
+
+function draw() {
+  for (var i = 0; i < 50; i++) {
+    var x = map(sin(angle), -1, 1, 0, 255);
+    sliders[i].value(x);
+  }
+  angle += .025;
+}
+
+// function windowResized() {resizeCanvas(windowWidth, windowWidth)}
